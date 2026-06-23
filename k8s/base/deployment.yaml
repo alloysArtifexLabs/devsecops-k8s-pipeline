@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: devsecops-demo
-          image: ghcr.io/<your-username>/devsecops-demo:1.0.0
+          image: ghcr.io/alloysartifexlabs/devsecops-demo:1.0.0
           ports:
             - containerPort: 8000
           resources:              # OPA will BLOCK deployments without these
