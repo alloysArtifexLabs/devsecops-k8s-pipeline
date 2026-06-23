@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/alloysArtifexLabs/devops-learning-platform
+    repoURL: https://github.com/alloysArtifexLabs/devsecops-k8s-pipeline
     targetRevision: main
     path: k8s/overlays/prod
   destination:
