@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devsecops-demo
+  labels:
+    app: devsecops-demo
+    owner: platform-team          # OPA will require these labels
+    environment: base
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devsecops-demo
+  template:
+    metadata:
+      labels:
+        app: devsecops-demo
+        owner: platform-team
+    spec:
+      containers:
+        - name: devsecops-demo
+          image: ghcr.io/<your-username>/devsecops-demo:1.0.0
+          ports:
+            - containerPort: 8000
+          resources:              # OPA will BLOCK deployments without these
+            requests:
+              memory: "64Mi"
+              cpu: "100m"
+            limits:
+              memory: "128Mi"
+              cpu: "200m"
+          env:
+            - name: APP_VERSION
+              value: "1.0.0"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+      securityContext:
+        runAsNonRoot: true        # OPA will enforce this too
