@@ -44,4 +44,6 @@ spec:
               port: 8000
             initialDelaySeconds: 5
       securityContext:
-        runAsNonRoot: true        # OPA will enforce this too
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000        # OPA will enforce this too

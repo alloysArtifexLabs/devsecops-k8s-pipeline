@@ -5,7 +5,8 @@ FROM python:3.12-slim
 
 # Run as non-root user — security best practice
 # OPA will also enforce this at admission
-RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
+RUN addgroup --system --gid 1000 appgroup && \
+    adduser --system --uid 1000 --ingroup appgroup appuser
 
 WORKDIR /app
 
