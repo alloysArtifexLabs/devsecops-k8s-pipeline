@@ -19,9 +19,10 @@ spec:
     spec:
       containers:
         - name: devsecops-demo
-          image: nginxinc/nginx-unprivileged:1.25-alpine
+          image: devsecops-demo:1.0.0
+          imagePullPolicy: Never
           ports:
-            - containerPort: 8080
+            - containerPort: 8000
           resources:              # OPA will BLOCK deployments without these
             requests:
               memory: "64Mi"
@@ -34,13 +35,13 @@ spec:
               value: "1.0.0"
           livenessProbe:
             httpGet:
-              path: /
-              port: 8080
+              path: /health
+              port: 8000
             initialDelaySeconds: 5
           readinessProbe:
             httpGet:
-              path: /
-              port: 8080
+              path: /health
+              port: 8000
             initialDelaySeconds: 5
       securityContext:
         runAsNonRoot: true        # OPA will enforce this too
