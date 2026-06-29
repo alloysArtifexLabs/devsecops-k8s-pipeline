@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: devsecops-demo
-          image: ghcr.io/alloysartifexlabs/devsecops-demo:sha-6be8af6
+          image: ghcr.io/alloysartifexlabs/devsecops-demo:sha-9776780
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
